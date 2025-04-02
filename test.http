@@ -1,0 +1,20 @@
+@baseUrl = http://localhost:5001/api/auth
+@firebaseToken = YOUR_FIREBASE_TOKEN_HERE
+
+### Health Check
+GET http://localhost:5001/health
+
+### Register New User
+POST {{baseUrl}}/register
+Content-Type: application/json
+
+{
+    "email": "test@example.com",
+    "name": "Test User",
+    "firebaseUid": "test123",
+    "phone": "+1234567890"
+}
+
+### Get User Profile (Protected Route)
+GET {{baseUrl}}/profile
+Authorization: Bearer {{firebaseToken}} 
