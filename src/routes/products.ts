@@ -171,7 +171,7 @@ router.get(
   async (req, res) => {
     try {
       const product = await Product.findById(req.params.id)
-        .populate('seller', 'name email');
+        .populate('seller', 'name email firebaseUid');
       
       if (!product) {
         return res.status(404).json({ message: 'Product not found' });
