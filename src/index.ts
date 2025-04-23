@@ -17,32 +17,8 @@ import uploadRoutes from './routes/uploads.js';
 const app = express();
 
 // CORS configuration
-const allowedOrigins = [
-  'http://localhost:8081',
-  'http://localhost:19006',
-  'http://localhost:19000',
-  // Add your production domain when you have it
-  process.env.FRONTEND_URL,
-  // Allow all origins in production for now
-  '*'
-].filter(Boolean);
-
 app.use(cors({
-  origin: (origin, callback) => {
-    // Allow all origins in production
-    if (process.env.NODE_ENV === 'production') {
-      return callback(null, true);
-    }
-    
-    // Development mode: check against allowed origins
-    if (!origin) return callback(null, true);
-    
-    if (allowedOrigins.indexOf(origin) !== -1) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
-  },
+  origin: ['http://localhost:8081', 'http://localhost:19006', 'http://localhost:19000'],
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true
